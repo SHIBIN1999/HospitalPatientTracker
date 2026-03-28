@@ -1,0 +1,51 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<h1>home </h1>
+<a class="btn btn-primary" href="{% url 'add_patient'%}" role="button">ADD</a>
+<form method="get">
+    
+    <input type="text" value="search" ><input type="submit" value="save">
+</form>
+
+<form method="get">
+  <select name="filter">
+    <option>choose</option>
+    {%for i in patients%}
+    <option value="{{i.id}}">{{i.name}}</option>
+
+    {% endfor %}
+    
+  </select>
+  <input type="submit" value="submit">
+</form>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">age</th>
+      <th scope="col">phone</th>
+      <th scope="col">disease</th>
+      <th scope="col">admission_date</th>
+      <th scope="col">Action</th>
+    
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in obj %}
+    <tr>
+      <th scope="row">{{i.id}}</th>
+      <td>{{i.name}}</td>
+      <td>{{i.age}}</td>
+      <td>{{i.phone}}</td>
+      <td>{{i.disease}}</td>
+      <td>{{i.admission_date}}</td>
+      <td><a class="btn btn-primary" href="{% url 'edit' i.id %}" role="button">EDIT</a><a class="btn btn-primary" href="{% url 'delete' i.id %}" role="button">DELETE</a></td>
+      </tr>
+    {% endfor%}
+  </tbody>
+</table>
+{% endblock %}

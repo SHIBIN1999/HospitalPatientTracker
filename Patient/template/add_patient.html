@@ -1,0 +1,10 @@
+{% extends 'base.html'%}
+
+{% block content%}
+<h1>ADD PATIENT </h1>
+<form method="post">
+    {% csrf_token %}
+    {{frm}}
+    <input type="submit" value="save">
+</form>
+{% endblock %}
